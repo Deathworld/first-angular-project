@@ -6,7 +6,7 @@
 
 
         <!-- Prend une donnée, en l'occurence lastUpdate provenant des composants et affiche la date formatée -->
-        <p>Mis à jour : {{lastUpdate | date: 'EEEE d MMMM y'}}</p>
+        <p>Mis à jour : {{lastUpdate | async | date: 'EEEE d MMMM y' | uppercase}}</p>
 
 
 

@@ -10,7 +10,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'my awesome app';
   isAuth = false;
-  lastUpdate = new Date();
+
+  /* méthode async, qui obtient sa valeur au bout de 2s */
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(
+      () => {
+        resolve(date);
+      }, 2000
+    );
+  });
 
 /*  appareilOne = 'Machine à laver';
   appareilTwo = 'Machine à refroidir';

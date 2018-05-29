@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Input} from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-appareil',
