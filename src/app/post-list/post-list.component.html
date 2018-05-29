@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <p>
-        Posts list
-      </p>
+
       <ul class="list-group">
         <app-post-item  *ngFor="let post of postsList"
                         [postTitle]="post.title" [postLikes]="post.likesAmount"
