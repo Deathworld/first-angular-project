@@ -1,34 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h2>Mes appareils</h2>
-      <ul class="list-group">
-
-
-        <!-- Prend une donnée, en l'occurence lastUpdate provenant des composants et affiche la date formatée -->
-        <p>Mis à jour : {{lastUpdate | async | date: 'EEEE d MMMM y' | uppercase}}</p>
-
-
-
-        <!-- Prend tous les appareils de l'Array "appareils" et les affiche -->
-        <app-appareil *ngFor="let appareil of appareils"
-                      [appareilName]="appareil.name"
-                      [statut]="appareil.status"
-                  ></app-appareil>
-
-
-        <!-- Affiche les composants un à un -->
-
-        <!--        <app-appareil [appareilName]="appareilOne" [statut]="'éteinte'"></app-appareil>
-                <app-appareil [appareilName]="appareilTwo" [statut]="'allumée'"></app-appareil>
-                <app-appareil [appareilName]="appareilThree" [statut]="'dans Espace'"></app-appareil>-->
-
-      </ul>
-
-      <!-- Bouton qui active la fonction onEnable -->
-      <button class="btn btn-success"
-              [disabled]="!isAuth"
-              (click)="onEnable()">Tout allumer</button>
 
 
     </div>
