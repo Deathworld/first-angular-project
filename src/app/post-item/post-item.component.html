@@ -1,0 +1,10 @@
+<li [ngClass]="{'list-group-item': true, 'list-group-item-success': postLikes>0, 'list-group-item-danger':postLikes<0}">
+  <h2 [ngStyle]="{color: getColor()}">{{postTitle}}</h2>
+  <h6 [ngStyle]="{color: getColor()}">{{postCreatedAt}}</h6>
+  <h6 [ngStyle]="{color: getColor()}">{{postContent}}</h6>
+  <h6 [ngStyle]="{color: getColor()}">{{postLikes}}</h6>
+
+  <button type="button" name="button" class="btn btn-success" (click)="addLike()">Love It!</button>
+  <button type="button" name="button" class="btn btn-success" (click)="removeLike()">Dislike it!</button>
+
+</li>
