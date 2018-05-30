@@ -1,10 +1,23 @@
 <li [ngClass]="{'list-group-item': true, 'list-group-item-success': postLikes>0, 'list-group-item-danger':postLikes<0}">
-  <h2 [ngStyle]="{color: getColor()}">{{postTitle}}</h2>
-  <h6 [ngStyle]="{color: getColor()}">{{postCreatedAt}}</h6>
-  <h6 [ngStyle]="{color: getColor()}">{{postContent}}</h6>
-  <h6 [ngStyle]="{color: getColor()}">{{postLikes}}</h6>
 
-  <button type="button" name="button" class="btn btn-success" (click)="addLike()">Love It!</button>
-  <button type="button" name="button" class="btn btn-success" (click)="removeLike()">Dislike it!</button>
+  <!-- Post title and creation date-->
+  <div class="row">
+    <div class="col-md-6">
+      <h2 [ngStyle]="{color: getColor()}">{{postTitle}}</h2>
+    </div>
+    <div class="col-md-6">
+      <h3 [ngStyle]="{color: getColor()}">{{postCreatedAt | date: 'dd MMMM y, mm:hh'}}</h3>
+    </div>
+  </div>
+
+  <!-- Post content (body) -->
+  <h6 [ngStyle]="{color: getColor()}">{{postContent}}</h6>
+
+  <!-- Show ':(' if postLikes < 1 and ':)' if postLikes > 1 -->
+  <h6 [ngStyle]="{color: getColor()}">{{postLikes}} {{postLikes > 1 ? ':)' : ':('}}</h6>
+
+  <!-- Like and dislike buttons -->
+  <button type="button" name="button" class="btn btn-success" (click)="addLike()" style="margin-right: 10px">Love It!</button>
+  <button type="button" name="button" class="btn btn-danger" (click)="removeLike()">Dislike it!</button>
 
 </li>

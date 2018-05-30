@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+      <h2>Posts List</h2>
+      <ul class="list-group" style="list-style: none">
 
-      <ul class="list-group">
+        <!-- List every posts and show them -->
         <app-post-item  *ngFor="let post of postsList"
                         [postTitle]="post.title" [postLikes]="post.likesAmount"
                         [postCreatedAt]="post.created_at" [postContent]="post.content"></app-post-item>
