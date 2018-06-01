@@ -10,4 +10,12 @@
   <!-- input avec comme text le nom -->
   <input text="text" class="form-control" [(ngModel)]="appareilName">
 
+  <button class="btn btn-sm btn-success"
+          *ngIf="statut === 'éteint'"
+          (click)="onSwitch()">Allumer</button>
+
+  <button class="btn btn-sm btn-danger"
+          *ngIf="statut === 'allumé'"
+          (click)="onSwitch()">Eteindre</button>
+
 </li>

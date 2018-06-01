@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppareilService} from './services/appareil.service';
 
 @Component({
   selector: 'app-root',
@@ -7,47 +8,45 @@ import { Component } from '@angular/core';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'my awesome app';
 
-  isAuth = false;
+  appareils: any[];
+
+  isAuth = true;
   lastUpdate = new Date();
 
-/*  appareilOne = 'Machine à laver';
-  appareilTwo = 'Machine à refroidir';
-  appareilThree = 'Gazinière à propulsion';*/
 
 
-  /* Array d'appareils */
+  // Importe AppareilService
+  constructor(private appareilService : AppareilService){
+    /*  Attend 4 secondes au chargement de la page */
+    /*      setTimeout(
+            () => {
+              this.isAuth = true;
+            }, 4000
+          );*/
+  }
 
-  appareils = [
-    {
-      name: 'Machine à voyager dans le temps',
-      status: 'éteint'
-    },
-
-    {
-      name: 'Machine à laver',
-      status: 'éteint'
-    },
-
-    {
-      name: 'Machine à refroidir',
-      status: 'loin'
-    }
-  ];
-
-  /*  Attends 4 secondes au chargement de la page */
-  constructor(){
-    setTimeout(
-      () => {
-        this.isAuth = true;
-      }, 4000
-    );
-
+  ngOnInit(){
+    this.appareils = this.appareilService.appareils;
   }
 
   onEnable(){
     console.log('On allume tout mon pote !');
+    // On appelle la fonction permettant de tout allumer
+    this.appareilService.switchOnAll();
+  }
+
+  onDisable(){
+    console.log('On éteint tout mon pote !');
+
+    // Popup en haut du navigateur qui demande de confirmer
+    if(confirm('Veuillez confirmer')) {
+      // On appelle la fonction permettant de tout éteindre
+      this.appareilService.switchOffAll();
+    } else{
+      return null;
+    }
   }
 }
