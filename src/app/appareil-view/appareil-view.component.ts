@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AppareilService} from '../services/appareil.service';
 
 
@@ -10,6 +10,11 @@ import {AppareilService} from '../services/appareil.service';
 export class AppareilViewComponent implements OnInit {
 
   appareils: any[];
+
+  @Input() appareilName: string;
+  @Input() appareilStatus: string;
+  @Input() index: number;
+  @Input() id: number;
 
 
 

@@ -9,7 +9,7 @@ import {AppareilService} from '../services/appareil.service';
 export class AppareilComponent implements OnInit {
 
   @Input() appareilName: string;
-  @Input() statut: string;
+  @Input() status: string;
   @Input() index: number;
 
   appareils: any[];
@@ -23,16 +23,24 @@ export class AppareilComponent implements OnInit {
   }
 
   getStatus() {
-    return this.statut;
+    return this.status;
   }
 
   onSwitch() {
-    if(this.statut === 'allumé') {
+    if(this.status === 'allumé') {
       this.appareilService.switchOnOff(this.index);
-    } else if(this.statut === 'éteint') {
+    } else if(this.status === 'éteint') {
       this.appareilService.switchOnOne(this.index);
     }
 
+  }
+
+  getColor() {
+    if(this.status === 'allumé') {
+      return 'green';
+    } else {
+      return 'red';
+    }
   }
 
 }

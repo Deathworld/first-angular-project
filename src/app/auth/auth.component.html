@@ -2,6 +2,15 @@
   <div class="row">
     <div class="col-xs-12">
       <router-outlet></router-outlet>
+
+      <button class="btn btn-sm btn-success"
+              *ngIf="!authStatus"
+              (click)="onSignIn()">Connexion</button>
+
+      <button class="btn btn-sm btn-danger"
+              *ngIf="authStatus"
+              (click)="onSignOut()">Déconnexion</button>
+
     </div>
   </div>
 </div>
