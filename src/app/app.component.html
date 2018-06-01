@@ -1,40 +1,18 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Authentification</a></li>
+        <li class="active"><a href="#">Appareils</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h2>Mes appareils</h2>
-      <ul class="list-group">
-
-
-        <!-- Prend une donnée, en l'occurence lastUpdate provenant des composants et affiche la date formatée -->
-        <p>Mis à jour : {{lastUpdate | date: 'EEEE d MMMM y'}}</p>
-
-
-
-        <!-- Prend tous les appareils de l'Array "appareils" et les affiche -->
-        <app-appareil *ngFor="let appareil of appareils; let i = index"
-                      [appareilName]="appareil.name"
-                      [statut]="appareil.status"
-                      [index]="i"
-                  ></app-appareil>
-
-
-        <!-- Affiche les composants un à un -->
-
-        <!--        <app-appareil [appareilName]="appareilOne" [statut]="'éteinte'"></app-appareil>
-                <app-appareil [appareilName]="appareilTwo" [statut]="'allumée'"></app-appareil>
-                <app-appareil [appareilName]="appareilThree" [statut]="'dans Espace'"></app-appareil>-->
-
-      </ul>
-
-      <!-- Bouton qui active la fonction onEnable -->
-      <button class="btn btn-success"
-              [disabled]="!isAuth"
-              (click)="onEnable()">Tout allumer</button>
-
-      <!-- Bouton qui active la fonction onDisable -->
-      <button class="btn btn-success"
-              [disabled]="!isAuth"
-              (click)="onDisable()">Tout éteindre</button>
+      <app-appareil-view></app-appareil-view>
 
     </div>
   </div>

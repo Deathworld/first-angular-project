@@ -1,0 +1,30 @@
+<h2>Mes appareils</h2>
+<ul class="list-group">
+
+
+  <!-- Prend une donnée, en l'occurence lastUpdate provenant des composants et affiche la date formatée -->
+<!--
+  <p>Mis à jour : {{lastUpdate | date: 'EEEE d MMMM y'}}</p>
+-->
+
+
+
+  <!-- Prend tous les appareils de l'Array "appareils" et les affiche -->
+  <app-appareil *ngFor="let appareil of appareils; let i = index"
+                [appareilName]="appareil.name"
+                [statut]="appareil.status"
+                [index]="i"
+  ></app-appareil>
+
+
+</ul>
+
+<!-- Bouton qui active la fonction onEnable -->
+<button class="btn btn-success"
+        [disabled]="!isAuth"
+        (click)="onEnable()">Tout allumer</button>
+
+<!-- Bouton qui active la fonction onDisable -->
+<button class="btn btn-success"
+        [disabled]="!isAuth"
+        (click)="onDisable()">Tout éteindre</button>
