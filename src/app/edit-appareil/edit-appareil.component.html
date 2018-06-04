@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <!-- Submite est la fonction et f est nom arbitraire pour le formulaire-->
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="name">
+          Nom de l'appareil
+        </label>
+        <!-- Required rend le champ obligatoire-->
+        <input type="text" id="name" class="form-control" name="name" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="status">
+          État de l'appareil
+        </label>
+        <!-- defaultOnOff correspond à la valeur par défaut -->
+        <select id="status" class="form-control" name="status" [ngModel]="defaultOnOff">
+          <option value="allumé">Allumé</option>
+          <option value="éteint">Éteint</option>
+        </select>
+      </div>
+
+      <!-- Bouton désactivé si required = false-->
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+    </form>
+  </div>
+</div>

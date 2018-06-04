@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AppareilService} from '../services/appareil.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -7,9 +8,10 @@ import {AppareilService} from '../services/appareil.service';
   templateUrl: './appareil-view.component.html',
   styleUrls: ['./appareil-view.component.css']
 })
-export class AppareilViewComponent implements OnInit {
+export class AppareilViewComponent implements OnInit, OnDestroy {
 
   appareils: any[];
+  appareilSubscription: Subscription;
 
   @Input() appareilName: string;
   @Input() appareilStatus: string;
@@ -18,18 +20,24 @@ export class AppareilViewComponent implements OnInit {
 
 
 
+  constructor(private appareilService: AppareilService) { }
 
-  constructor(private appareilService : AppareilService){
-    /*  Attend 4 secondes au chargement de la page */
-    /*      setTimeout(
-            () => {
-              this.isAuth = true;
-            }, 4000
-          );*/
+  ngOnInit() {
+    this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
+      (appareils: any[]) => {
+        this.appareils = appareils;
+      }
+    );
+    this.appareilService.emitAppareilSubject();
   }
 
-  ngOnInit(){
-    this.appareils = this.appareilService.appareils;
+
+  onSave() {
+    this.appareilService.saveAppareilsToServer();
+  }
+
+  onFetch() {
+    this.appareilService.getAppareilsFromServer();
   }
 
 
@@ -49,5 +57,9 @@ export class AppareilViewComponent implements OnInit {
     } else{
       return null;
     }
+  }
+
+  ngOnDestroy() {
+    this.appareilSubscription.unsubscribe();
   }
 }
