@@ -1,36 +1,51 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { AppareilComponent } from './appareil/appareil.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { AppareilService} from './services/appareil.service';
-import { AuthService} from './services/auth.service';
-
-import { AuthComponent } from './auth/auth.component';
-import { AppareilViewComponent } from './appareil-view/appareil-view.component';
-import {Router, RouterModule, Routes} from '@angular/router';
-import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
-
-import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
-import {AuthGuard} from './services/auth-guard.service';
-import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
-import {UserService} from './services/user.service';
-import { UserListComponent } from './user-list/user-list.component';
-import { NewUserComponent } from './new-user/new-user.component';
+import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
+import {SignupComponent} from './auth/signup/signup.component';
+import {SigninComponent} from './auth/signin/signin.component';
+import {BookListComponent} from './book-list/book-list.component';
+import {SingleBookComponent} from './book-list/single-book/single-book.component';
+import {BookFormComponent} from './book-list/book-form/book-form.component';
+import {HeaderComponent} from './header/header.component';
+import {BooksService} from './services/books.service';
+import {RouterModule, Routes} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthService} from './services/auth.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 
+const appRoutes: Routes = [
+    { path: 'auth/signup', component: SignupComponent },
+    { path: 'auth/signin', component: SigninComponent },
+    { path: 'books', canActivate: [AuthGuardService], component: BookListComponent },
+    { path: 'books/new', canActivate: [AuthGuardService], component: BookFormComponent },
+    { path: 'books/view/:id', canActivate: [AuthGuardService], component: SingleBookComponent },
+    { path: '', redirectTo: 'books', pathMatch: 'full' },
+    { path: '**', redirectTo: 'books' }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SignupComponent,
+        SigninComponent,
+        BookListComponent,
+        SingleBookComponent,
+        BookFormComponent,
+        HeaderComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes)
+    ],
+    providers: [AuthService, BooksService, AuthGuardService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
