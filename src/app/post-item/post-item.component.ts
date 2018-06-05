@@ -30,6 +30,10 @@ export class PostItemComponent implements OnInit {
     this.postLikes--;
   }
 
+  deletePost(){
+
+  }
+
   constructor() { }
 
   ngOnInit() {

@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h2 style="text-align: center; margin: 20px auto 20px auto">New Post</h2>
+        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                       id="title"
+                       class="form-control"
+                       formControlName="title">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea type="content"
+                       id="content"
+                       class="form-control"
+                       formControlName="content">
+                </textarea>
+            </div>
+
+            <div formArrayName="tags">
+                <h4>Tags</h4>
+                <div class="form-group" *ngFor="let newTagControl of getTags().controls; let i = index">
+                    <input type="text" class="form-control" [formControlName]="i">
+                </div>
+                <button type="button" class="btn btn-success" (click)="onAddTag()">Add a tag</button>
+            </div>
+
+            <button class="btn btn-primary"
+                    type="submit"
+                    [disabled]="postForm.invalid" style="margin-top: 20px; width: 100%;">Submit</button>
+        </form>
+        <p class="text-danger">{{ errorMessage }}</p>
+    </div>
+</div>
